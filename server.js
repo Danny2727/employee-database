@@ -1,5 +1,7 @@
 const express = require('express');
 const mysql = require('mysql2');
+const fs = require('fs');
+const inquirer = require('inquirer');
 
 
 const PORT = process.env.PORT || 3001;
@@ -22,7 +24,7 @@ const db = mysql.createConnection(
     console.log(`Connected to the department_db database.`)
   );
 
-  
+
 
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
