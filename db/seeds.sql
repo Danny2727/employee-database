@@ -12,7 +12,7 @@ VALUES("Sales Lead", 80000, 1),
       ("Lead Engineer",100000, 3),
       ("Software Enginner", 85000, 3),
       ("Talent Management", 70000, 4),
-      ("HR Compliance", 500000, 4);
+      ("HR Compliance", 50000, 4);
 
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
 VALUES("Kevin", "Durant", 1, NULL),
