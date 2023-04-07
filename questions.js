@@ -3,7 +3,7 @@ const questions = [
         type: 'list',
         name: 'companyInfo',
         message: 'What would you like to do with the company databse',
-        choices: ['View Departments', ' View Roles', 'View Employees', 'Add Department', 'Add Employee', 'Update Role'],
+        choices: ['View Departments', 'View Roles', 'View Employees', 'Add Department', 'Add Role', 'Add Employee', 'Update Role', 'Exit'],
         validate: (value) => { if (value) { return true } else { return `Please select what you would like to do with the databse.` } },
         
     }
@@ -67,12 +67,11 @@ const employeeQuestions = [
     },
 ]
 
-const updateQuestios = [
+const updateQuestions = [
     {
-        type: 'list',
+        type: 'input',
         name: 'update',
         message: "Please select an employee to update the data base.",
-        choices: [],
         validate: (value) => { if (value) { return true } else { return `Please select an Employee to update the data base.` } },
     },
     {
@@ -85,5 +84,5 @@ const updateQuestios = [
 
 ]
 
-module.exports = {departmentQuestions, roleQuestions, employeeQuestions, updateQuestios };
+module.exports = {questions,departmentQuestions, roleQuestions, employeeQuestions, updateQuestions };
 
