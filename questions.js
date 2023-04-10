@@ -69,9 +69,10 @@ const employeeQuestions = [
 
 const updateQuestions = [
     {
-        type: 'input',
+        type: 'list',
         name: 'update',
         message: "Please select an employee to update the data base.",
+        choices: [],
         validate: (value) => { if (value) { return true } else { return `Please select an Employee to update the data base.` } },
     },
     {

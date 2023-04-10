@@ -31,7 +31,7 @@ function viewDepartment() {
 
 function viewRole() {
 
-    db.query('SELECT  * FROM role', (err, results) => {
+    db.query('SELECT role.id, role.title, role.salary, department.name_id AS department FROM role INNER JOIN department ON role.department_id = department.id;', (err, results) => {
         if (err) {
             console.log(err);
         }
@@ -43,7 +43,7 @@ function viewRole() {
 
 function viewEmployee() {
 
-    db.query('SELECT  * FROM employee', (err, results) => {
+    db.query('SELECT employee.id, employee.first_name, employee.last_name, role.title, role.salary, role.deperment_id AS role FROM employee INNER JOIN role ON employee.role_id = department_id INNER JOIN department ON role.department_id = department.id LEFT JOIN employee ON employee.manager_id = id;', (err, results) => {
         if (err) {
             console.log(err);
         }
@@ -101,7 +101,7 @@ function employee() {
 function updateEmployee() {
     prompt(updateQuestions)
         .then(answers => {
-            db.query('UPDATE employee SET role_id = ? WHERE id = ?', [answers.update, answers.newRole], (err, results) => {
+            db.query('UPDATE employee SET role_id = ? WHERE id = ?', [answers.newRole, answers.update], (err, results) => {
                 if (err) {
                     console.log(err);
                 }
