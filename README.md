@@ -6,27 +6,28 @@
 # Table of Contents 
 - [Installation](#installation)
 - [Usage](#usage)
-- [Test](#test)
+- [Screenshot](#screenshot)
 - [Questions](#questions)
-- [Website Link](#website-link)
+- [Video Link](#video-link)
 
 
 # Installation
  - git clone (github repo)
  - cd into the repo
  - "code ." to open up in VS Code
-
- # Screenshot
- - 
+ 
 
 # Usage
  - Use the code to practice what you have learned about SQL to create a databse.
  
 
-# Test 
-- N/A
+ # Screenshot
+ - <img width="1135" alt="Screenshot 2023-05-01 at 7 55 17 PM" src="https://user-images.githubusercontent.com/113525669/235551607-ad96c7bf-4b04-4c80-a7ee-87b80f9ac240.png">
 
 
 # Questions
 - dannyedouard14@gmail.com
 - https://github.com/Danny2727/employee-database 
+
+# Video Link
+- https://www.youtube.com/watch?v=e9-oyTtie0s 

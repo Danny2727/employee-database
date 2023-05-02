@@ -67,23 +67,6 @@ const employeeQuestions = [
     },
 ]
 
-const updateQuestions = [
-    {
-        type: 'list',
-        name: 'update',
-        message: "Please select an employee to update the data base.",
-        choices: [],
-        validate: (value) => { if (value) { return true } else { return `Please select an Employee to update the data base.` } },
-    },
-    {
-        type:'input',
-        name:'newRole',
-        message:'What is the employees new role.',
-        validate: (value) => { if (value) { return true } else { return `Please update the employees new role.` } },
 
-    }
-
-]
-
-module.exports = {questions,departmentQuestions, roleQuestions, employeeQuestions, updateQuestions };
+module.exports = {questions,departmentQuestions, roleQuestions, employeeQuestions };
 

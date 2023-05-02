@@ -1,7 +1,7 @@
 const fs = require('fs');
-const {prompt} = require('inquirer');
+const { prompt } = require('inquirer');
 const mysql = require('mysql2');
-const { questions, departmentQuestions, roleQuestions, employeeQuestions, updateQuestions } = require('./questions');
+const { questions, departmentQuestions, roleQuestions, employeeQuestions} = require('./questions');
 
 // Connect to database
 const db = mysql.createConnection(
@@ -16,6 +16,9 @@ const db = mysql.createConnection(
     console.log(`Connected to the department_db database.`)
 );
 
+const utils = require('util')
+db.query = utils.promisify(db.query)
+
 function viewDepartment() {
 
     db.query('SELECT  * FROM department', (err, results) => {
@@ -25,7 +28,7 @@ function viewDepartment() {
         console.table(results);
         addToDataBase();
     })
-    
+
 
 }
 
@@ -98,17 +101,40 @@ function employee() {
 
 };
 
-function updateEmployee() {
-    prompt(updateQuestions)
-        .then(answers => {
-            db.query('UPDATE employee SET role_id = ? WHERE id = ?', [answers.newRole, answers.update], (err, results) => {
-                if (err) {
-                    console.log(err);
+async function updateEmployee() {
+    const roles = await db.query('SELECT id as value, title as name FROM role')
+    db.query('SELECT id as value, concat(first_name, " ", last_name) as name FROM employee')
+        .then((employees, err) => {
+            prompt([
+                {
+                    type: 'list',
+                    name: 'update',
+                    message: "Please select an employee to update the data base.",
+                    choices: employees,
+                    validate: (value) => { if (value) { return true } else { return `Please select an Employee to update the data base.` } },
+                },
+                {
+                    type:'list',
+                    name:'newRole',
+                    message:'What is the employees new role.',
+                    choices: roles,
+                    validate: (value) => { if (value) { return true } else { return `Please update the employees new role.` } },
+            
                 }
-                console.table(results);
-                addToDataBase();
-            });
+            ])
+            //const newArr = employees.map(...);
+            //Map through employees and return an objet with name and value { name: employee.first_name, value: employee.id }
+            //updateQuestions[0].choices = newArr (//pass that new array from the .map and feed it into updateQuestions)
+                .then(answers => {
+                    db.query('UPDATE employee SET role_id = ? WHERE id = ?', [answers.newRole, answers.update], (err, results) => {
+                        if (err) {
+                            console.log(err);
+                        }
+                        console.table(results);
+                        addToDataBase();
+                    });
 
+                })
         })
 
 };
